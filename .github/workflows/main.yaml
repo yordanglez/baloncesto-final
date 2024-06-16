@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: pruebas-unitarias
-        uses: echo "pruebas-unitarias
+        run: echo "pruebas-unitarias
       - name: empaquetar
         run: echo "empaquetar"
 
@@ -15,7 +15,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: pruebas-funcionales
-        uses: echo "pruebas-funcionales"
+        run: echo "pruebas-funcionales"
 
   qa:
     needs: test
