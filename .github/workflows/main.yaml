@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: pruebas-unitarias
-        run: echo "pruebas-unitarias
+        run: echo "pruebas-unitarias"
       - name: empaquetar
         run: echo "empaquetar"
 
