@@ -50,7 +50,7 @@ jobs:
           mvn sonar:sonar -Dsonar.host.url=http://sonarqube:9000 \
                           -Dsonar.qualitygate.wait=true \
                           -Dsonar.login=admin \
-                          -Dsonar.password=admin
+                          -Dsonar.password=sonarqube
   
 
   deploy:
