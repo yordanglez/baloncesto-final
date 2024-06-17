@@ -1,0 +1,6 @@
+projectKey=IC:Baloncesto
+serverUrl=http://localhost:9000
+serverVersion=10.5.1.90531
+dashboardUrl=http://localhost:9000/dashboard?id=IC%3ABaloncesto
+ceTaskId=f7c595f0-a1fc-4e4a-9808-273bc687edd7
+ceTaskUrl=http://localhost:9000/api/ce/task?id=f7c595f0-a1fc-4e4a-9808-273bc687edd7
