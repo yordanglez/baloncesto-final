@@ -58,13 +58,19 @@ jobs:
     needs: qa
     if: github.ref == 'refs/heads/master'
     steps:
-      - name: Checkout Repository
+      - name: Descargar repositorio
         uses: actions/checkout@v3
-      - name: Create .war file
+      - name: Crear el archivo .war file
         run: |
           mvn package -DskipTests=true
 
-      - name: Deploy to Azure
+      - name: Aprobación manual
+          uses: trstringer/manual-approval@v1
+          with:
+            secret: ${{ secrets.TOKEN }}
+            approvers: yordanglez
+
+      - name: Desplegar en Azure
         uses: Azure/webapps-deploy@v2
         with:
           app-name: baloncesto-gonzalez
