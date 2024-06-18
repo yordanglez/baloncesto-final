@@ -12,6 +12,7 @@ jobs:
       - name: compilar la aplicación sin repetir pruebas
         run: mvn package -DskipTests=true
 
+
   test:
     needs: build
     runs-on: self-hosted
