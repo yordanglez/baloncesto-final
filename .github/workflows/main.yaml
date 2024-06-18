@@ -51,7 +51,6 @@ jobs:
                           -Dsonar.qualitygate.wait=true \
                           -Dsonar.login=admin \
                           -Dsonar.password=sonarqube
-  
 
   deploy:
     needs: qa
