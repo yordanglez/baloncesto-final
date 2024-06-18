@@ -64,6 +64,12 @@ jobs:
         run: |
           mvn package -DskipTests=true
 
+      - name: Approbation manual
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ secrets.TOKEN }}
+          approvers: yordanglez
+
       - name: Desplegar en Azure
         uses: Azure/webapps-deploy@v2
         with:
