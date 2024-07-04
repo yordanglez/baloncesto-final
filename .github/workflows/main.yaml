@@ -101,3 +101,6 @@ jobs:
           app-name: baloncesto-gonzalez
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: target/*.war
+
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
