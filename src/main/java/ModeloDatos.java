@@ -9,6 +9,7 @@ public class ModeloDatos {
     public void abrirConexion() {
 
         try {
+            System.out.println("abrir conexion");
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Con variables de entorno
@@ -49,6 +50,29 @@ public class ModeloDatos {
             System.out.println("El error es: " + e.getMessage());
         }
         return (existe);
+    }
+    public int getVotosJugador(String nombre) {
+        int votos = 0;
+        String cad;
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM Jugadores");
+            while (rs.next()) {
+                cad = rs.getString("Nombre");
+                cad = cad.trim();
+                if (cad.compareTo(nombre.trim()) == 0) {
+                    votos = rs.getInt("Votos");
+                    break;
+                }
+            }
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            // No lee de la tabla
+            System.out.println("No lee de la tabla");
+            System.out.println("El error es: " + e.getMessage());
+        }
+        return (votos);
     }
 
     public void actualizarJugador(String nombre) {
