@@ -63,6 +63,18 @@ public class ModeloDatos {
             System.out.println("El error es: " + e.getMessage());
         }
     }
+    public void actualizarVotosCero() {
+        try {
+            set = con.createStatement();
+            set.executeUpdate("UPDATE Jugadores SET votos=0");
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            // No modifica la tabla
+            System.out.println("No modifica la tabla");
+            System.out.println("El error es: " + e.getMessage());
+        }
+    }
 
     public void insertarJugador(String nombre) {
         try {
