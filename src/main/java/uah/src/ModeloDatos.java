@@ -1,6 +1,10 @@
 package uah.src;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -80,6 +84,28 @@ public class ModeloDatos {
             LOGGER.log(Level.INFO,String.format(ERROR_MESSAGE, e.getMessage()));
         }
         return (votos);
+    }
+
+    public List<Map<String, Object>> listVotosJugador() {
+        List<Map<String, Object>> jugadores = new ArrayList<>();
+        String cad;
+        try {
+            set = con.createStatement();
+            rs = set.executeQuery("SELECT * FROM Jugadores");
+            while (rs.next()) {
+                Map<String, Object> jugador = new HashMap<>();
+                jugador.put("nombre", rs.getString("Nombre"));
+                jugador.put("votos", rs.getInt("Votos"));
+                jugadores.add(jugador);
+            }
+            rs.close();
+            set.close();
+        } catch (Exception e) {
+            // No lee de la tabla
+            LOGGER.log(Level.INFO,"No lee de la tabla");
+            LOGGER.log(Level.INFO,String.format(ERROR_MESSAGE, e.getMessage()));
+        }
+        return (jugadores);
     }
 
     public void actualizarJugador(String nombre) {
