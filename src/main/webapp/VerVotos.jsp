@@ -1,11 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<html>
+<!DOCTYPE html>
+<html lang="es">
     <head><title>Votaci&oacute;n mejor jugador liga ACB</title></head>
     <body class="resultado">
-        <font size=10>
             <h2>Votos de Jugadores</h2>.
             <table border="1">
+                <caption>Votos de jugadores</caption>
                 <tr>
                     <th>Nombre</th>
                     <th>Votos</th>
@@ -18,7 +18,6 @@
                 </c:forEach>
             </table>
         <hr>
-        </font>
         <br>
         <br> <a href="index.html"> Ir al comienzo</a>
     </body>
