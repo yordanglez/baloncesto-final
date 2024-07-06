@@ -1,3 +1,7 @@
+package uah.src;
+
+import uah.src.ModeloDatos;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +13,7 @@ import java.io.IOException;
 public class VotosCero extends HttpServlet {
 
     private ModeloDatos bd;
-
+    @Override
     public void init(ServletConfig cfg) throws ServletException {
         bd = new ModeloDatos();
         bd.abrirConexion();

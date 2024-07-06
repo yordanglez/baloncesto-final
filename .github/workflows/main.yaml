@@ -7,8 +7,6 @@ jobs:
     steps:
       - name: descargar repostorio
         uses: actions/checkout@v3
-      - name: compilar la aplicación sin repetir pruebas
-        run: mvn package -DskipTests=true
       - name: pruebas-unitarias
         run: |
           mysql -u root < db/baloncesto.sql
@@ -18,6 +16,9 @@ jobs:
           export DATABASE_USER="usuario"
           export DATABASE_PASS="clave"
           mvn test
+      - name: compilar la aplicación sin repetir pruebas
+        run: mvn package -DskipTests=true
+
 
 
   test:

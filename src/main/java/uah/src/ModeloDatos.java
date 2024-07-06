@@ -1,15 +1,22 @@
+package uah.src;
+
 import java.sql.*;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+
 
 public class ModeloDatos {
 
     private Connection con;
     private Statement set;
     private ResultSet rs;
+    private static final Logger LOGGER = Logger.getLogger(ModeloDatos.class.getName());
+    private static final String ERROR_MESSAGE = "El error es: {}";
 
     public void abrirConexion() {
 
         try {
-            System.out.println("abrir conexion");
+            LOGGER.log(Level.INFO,"abrir conexion");
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Con variables de entorno
@@ -24,8 +31,8 @@ public class ModeloDatos {
 
         } catch (Exception e) {
             // No se ha conectado
-            System.out.println("No se ha podido conectar");
-            System.out.println("El error es: " + e.getMessage());
+            LOGGER.log(Level.INFO,"No se ha podido conectar");
+            LOGGER.log(Level.INFO,String.format(ERROR_MESSAGE, e.getMessage()));
         }
     }
 
@@ -46,8 +53,8 @@ public class ModeloDatos {
             set.close();
         } catch (Exception e) {
             // No lee de la tabla
-            System.out.println("No lee de la tabla");
-            System.out.println("El error es: " + e.getMessage());
+            LOGGER.log(Level.INFO,"No lee de la tabla");
+            LOGGER.log(Level.INFO,String.format(ERROR_MESSAGE, e.getMessage()));
         }
         return (existe);
     }
@@ -69,22 +76,23 @@ public class ModeloDatos {
             set.close();
         } catch (Exception e) {
             // No lee de la tabla
-            System.out.println("No lee de la tabla");
-            System.out.println("El error es: " + e.getMessage());
+            LOGGER.log(Level.INFO,"No lee de la tabla");
+            LOGGER.log(Level.INFO,String.format(ERROR_MESSAGE, e.getMessage()));
         }
         return (votos);
     }
 
     public void actualizarJugador(String nombre) {
-        try {
-            set = con.createStatement();
-            set.executeUpdate("UPDATE Jugadores SET votos=votos+1 WHERE nombre " + " LIKE '%" + nombre + "%'");
+        String UPDATE_JUGADOR_QUERY = "UPDATE Jugadores SET votos = votos + 1 WHERE nombre LIKE ?";
+        try(PreparedStatement set = con.prepareStatement(UPDATE_JUGADOR_QUERY)) {
+            set.setString(1, "%" + nombre + "%");
+            set.executeUpdate();
             rs.close();
             set.close();
         } catch (Exception e) {
             // No modifica la tabla
-            System.out.println("No modifica la tabla");
-            System.out.println("El error es: " + e.getMessage());
+            LOGGER.log(Level.INFO,"No modifica la tabla");
+            LOGGER.log(Level.INFO,String.format(ERROR_MESSAGE, e.getMessage()));
         }
     }
     public void actualizarVotosCero() {
@@ -95,21 +103,22 @@ public class ModeloDatos {
             set.close();
         } catch (Exception e) {
             // No modifica la tabla
-            System.out.println("No modifica la tabla");
-            System.out.println("El error es: " + e.getMessage());
+            LOGGER.log(Level.INFO,"No modifica la tabla");
+            LOGGER.log(Level.INFO,String.format(ERROR_MESSAGE, e.getMessage()));
         }
     }
 
     public void insertarJugador(String nombre) {
-        try {
-            set = con.createStatement();
-            set.executeUpdate("INSERT INTO Jugadores " + " (nombre,votos) VALUES ('" + nombre + "',1)");
+        String INSERT_JUGADOR_QUERY = "INSERT INTO Jugadores (nombre, votos) VALUES (?, 1)";
+        try(PreparedStatement set = con.prepareStatement(INSERT_JUGADOR_QUERY)) {
+            set.setString(1, nombre);
+            set.executeUpdate();
             rs.close();
             set.close();
         } catch (Exception e) {
             // No inserta en la tabla
-            System.out.println("No inserta en la tabla");
-            System.out.println("El error es: " + e.getMessage());
+            LOGGER.log(Level.INFO,"No inserta en la tabla");
+            LOGGER.log(Level.INFO,String.format(ERROR_MESSAGE, e.getMessage()));
         }
     }
 
@@ -117,8 +126,7 @@ public class ModeloDatos {
         try {
             con.close();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            LOGGER.log(Level.INFO,e.getMessage());
         }
     }
-
 }
