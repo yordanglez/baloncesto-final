@@ -42,18 +42,13 @@ public class PruebasPhantomjsIT
         WebElement btnPonerVotosACero = driver.findElement(By.name("B3"));
         btnPonerVotosACero.click();
 
-        // Ver votos
         WebElement btnVerVotos = driver.findElement(By.name("B4"));
         btnVerVotos.click();
 
-        // Verificar que los votos están a cero
-        // Esperar a que la página cargue
         driver.manage().timeouts().implicitlyWait(10, java.util.concurrent.TimeUnit.SECONDS);
 
-        // Obtener filas de la tabla de votos
         List<WebElement> filas = driver.findElements(By.xpath("//table[@border='1']//tr"));
 
-        // Verificar cada fila para asegurarse de que los votos están a cero
         for (int i = 1; i < filas.size(); i++) {
             List<WebElement> columnas = filas.get(i).findElements(By.tagName("td"));
             String nombre = columnas.get(0).getText();

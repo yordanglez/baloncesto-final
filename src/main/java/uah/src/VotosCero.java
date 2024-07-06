@@ -23,9 +23,6 @@ public class VotosCero extends HttpServlet {
         HttpSession s = req.getSession(true);
 
             bd.actualizarVotosCero();
-
-        // Llamada a la página jsp que nos da las gracias
-        res.sendRedirect(res.encodeRedirectURL("TablaVotos.jsp"));
     }
 
     public void destroy() {
