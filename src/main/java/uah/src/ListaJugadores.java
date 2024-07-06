@@ -25,7 +25,7 @@ public class ListaJugadores extends HttpServlet {
         List<Map<String, Object>> jugadores = bd.listVotosJugador();
         req.setAttribute("jugadores", jugadores);
         // Llamada a la página jsp que nos da las gracias
-        res.sendRedirect(res.encodeRedirectURL("VerVotos.jsp"));
+        req.getRequestDispatcher("VerVotos.jsp").forward(req, res);
     }
 
     public void destroy() {
