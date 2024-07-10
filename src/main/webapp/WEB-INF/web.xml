@@ -19,6 +19,14 @@
         <servlet-name>VotosCero</servlet-name>
         <url-pattern>/VotosCero</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ListaJugadores</servlet-name>
+        <servlet-class>uah.src.ListaJugadores</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListaJugadores</servlet-name>
+        <url-pattern>/ListaJugadores</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

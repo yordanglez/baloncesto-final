@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.Test;
 import uah.src.ModeloDatos;
 
+import java.util.List;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ModeloDatosTest {
@@ -28,5 +31,17 @@ public class ModeloDatosTest {
         instance.cerrarConexion();
         System.out.println("votos: " + votos);
         assertEquals(expResult, votos);
+    }
+    public void testListJugadores() {
+        System.out.println("Prueba de actualizarJugador");
+        String nombre = "Llull";
+        ModeloDatos instance = new ModeloDatos();
+        instance.abrirConexion();
+        int expResult = 1;
+        instance.actualizarVotosCero();
+        instance.actualizarJugador(nombre);
+        List<Map<String, Object>> jugadores = instance.listVotosJugador();
+        instance.cerrarConexion();
+        System.out.println("Jugadores: " + jugadores);
     }
 }
